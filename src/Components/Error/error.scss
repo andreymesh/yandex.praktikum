@@ -1,0 +1,27 @@
+@import "../../style.scss";
+
+.error-page {
+  @include center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+
+  span {
+    color: $text-color;
+    text-align: center;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+.error-page-code {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.error-page-title {
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  margin: 1.25rem 0 2rem;
+}

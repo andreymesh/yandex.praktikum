@@ -1,0 +1,24 @@
+$main-color: #3369f3;
+$second-color: #e4edfd;
+$error-color: #ff2f2f;
+$text-color: #1e1e1e;
+$text-secondary-color: #999;
+$input-color: #efefef;
+$overlay-color: #00000040;
+$white-color: #fff;
+
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin text-style {
+  color: $text-color;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+}

@@ -1,0 +1,6 @@
+@import "../../style.scss";
+
+.registration-container {
+  @include center;
+  height: 100vh;
+}

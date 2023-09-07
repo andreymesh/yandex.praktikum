@@ -1,0 +1,12 @@
+<main class="profile">
+  <nav class="return-button">
+    {{>ButtonIcon buttonClassName="return-button-link"}}
+  </nav>
+  <div class="profile-container">
+    <div class="profile-container-header">
+      {{>Avatar className="profile-container-avatar"}}
+      <div><span class="profile-container-user-name">{{userName}}</span></div>
+    </div>
+    {{> @partial-block }}
+  </div>
+</main>

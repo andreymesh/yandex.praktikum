@@ -1,0 +1,100 @@
+@import "../../style.scss";
+
+.current-chat-selected {
+  @include center;
+  justify-content: space-between;
+  flex-direction: column;
+  max-height: 100vh;
+  width: 100%;
+}
+
+.current-chat-header {
+  align-items: center;
+  border-bottom: 0.063rem solid $input-color;
+  display: flex;
+  height: 4.375rem;
+  width: 100%;
+}
+
+.current-chat-header-image {
+  @include center;
+  height: 4.7rem;
+  width: 4.25rem;
+}
+
+.current-chat-header-icon {
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
+}
+
+.current-chat-name {
+  @include text-style;
+  text-align: start;
+  flex-grow: 1;
+  font-weight: bold;
+  padding: 0.625rem;
+}
+
+.chat-settings {
+  padding: 0.625rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.current-chat-main {
+  overflow-y: scroll;
+}
+
+.current-chat-footer {
+  align-items: center;
+  border-top: 0.063rem solid $input-color;
+  display: flex;
+  height: 3.375rem;
+  justify-content: space-between;
+  padding: 0.625rem;
+  width: 100%;
+  gap: 1rem;
+}
+
+.message-input-block {
+  flex-grow: 1;
+}
+
+.message-input {
+  @include text-style;
+  padding-left: 1rem;
+  text-align: start;
+  color: $text-secondary-color;
+  border-radius: 30px;
+  background: $input-color;
+  border-color: transparent;
+  height: 32px;
+  width: 95%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.add-file-button {
+  background-color: transparent;
+  border: 0;
+  padding: 0.625rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.send-button {
+  background-color: transparent;
+  border: 0;
+  padding: 0.625rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
