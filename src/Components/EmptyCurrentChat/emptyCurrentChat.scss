@@ -1,0 +1,13 @@
+@import "../../style.scss";
+
+.empty-current-chat {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.empty-current-chat-title {
+  @include text-style;
+  color: $text-secondary-color;
+}

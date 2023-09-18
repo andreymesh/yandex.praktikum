@@ -1,0 +1,21 @@
+<main class="login-container">
+  {{#>AuthForm}}
+  {{> Header label="Регистрация"}}
+  {{> Input label="Почта" name="email" inputContainerClassName="input-container" inputClassName="input"
+  inputLabelClassName="input-label"}}
+  {{> Input label="Логин" name="login" inputContainerClassName="input-container" inputClassName="input"
+  inputLabelClassName="input-label"}}
+  {{> Input label="Имя" name="first_name" inputContainerClassName="input-container" inputClassName="input"
+  inputLabelClassName="input-label"}}
+  {{> Input label="Фамилия" name="second_name" inputContainerClassName="input-container" inputClassName="input"
+  inputLabelClassName="input-label"}}
+  {{> Input label="Телефон" name="phone" inputContainerClassName="input-container" inputClassName="input"
+  inputLabelClassName="input-label"}}
+  {{> Input label="Пароль" type="password" name="password" inputContainerClassName="input-container"
+  inputClassName="input" inputLabelClassName="input-label"}}
+  {{> Input label="Пароль (еще раз)" type="password" inputContainerClassName="input-container" inputClassName="input"
+  inputLabelClassName="input-label"}}
+  {{> Button label="Зарегистрироваться" type="primary" page="chat" }}
+  {{> Link label="Войти" page="login" linkClassName="link"}}
+  {{/AuthForm}}
+</main>

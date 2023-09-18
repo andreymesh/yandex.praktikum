@@ -1,0 +1,19 @@
+<li class="chat-item-card" page="selected-chat">
+  <div class="chat-item-card-photo-wrapper">
+    <img src="{{avatar}}" class="chat-item-card-photo" alt="Фото собеседника.">
+  </div>
+  <p class="chat-item-card-name">
+    {{title}}
+  </p>
+  <p class="chat-item-card-last-messege">
+    {{last_message}}
+  </p>
+  <time class="chat-item-card-date">
+    {{time}}
+  </time>
+  {{#if unread_count}}
+  <p class="chat-item-card-counter">
+    {{unread_count}}
+  </p>
+  {{/if}}
+</li>

@@ -1,0 +1,9 @@
+@import "../../style.scss";
+
+.link {
+  @include text-style;
+  color: $main-color;
+  line-height: 11px;
+  text-decoration: none;
+  cursor: pointer;
+}

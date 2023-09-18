@@ -1,0 +1,76 @@
+@import "../../style.scss";
+
+.chat-item-card {
+  border-top: 0.063rem solid $input-color;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "chat-item-card-photo chat-item-card-name chat-item-card-date"
+    "chat-item-card-photo chat-item-card-last-messege chat-item-card-counter";
+  height: 5rem;
+  gap: 1rem 1rem;
+  min-width: 16rem;
+  padding: 0.625rem;
+}
+
+.chat-item-card-photo-wrapper {
+  grid-area: chat-item-card-photo;
+  height: 3rem;
+  margin: auto;
+  position: relative;
+  width: 3rem;
+}
+
+.chat-item-card-photo {
+  border-radius: 50%;
+  height: 100%;
+  left: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.chat-item-card-name {
+  color: $text-color;
+  font-weight: 600;
+  grid-area: chat-item-card-name;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-item-card-date {
+  color: $text-secondary-color;
+  font-size: 0.875rem;
+  grid-area: chat-item-card-date;
+  margin: 0;
+  text-align: right;
+}
+
+.chat-item-card-last-messege {
+  color: $text-secondary-color;
+  grid-area: chat-item-card-last-messege;
+  margin: 0;
+  max-height: 2rem;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+}
+
+.chat-item-card-counter {
+  align-self: end;
+  background-color: $main-color;
+  border-radius: 50%;
+  color: $white-color;
+  font-size: 0.875rem;
+  grid-area: chat-item-card-counter;
+  height: 1.4rem;
+  line-height: 1.7;
+  margin: 0 0 0 auto;
+  text-align: center;
+  width: 1.4rem;
+}

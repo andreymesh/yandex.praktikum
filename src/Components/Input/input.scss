@@ -1,0 +1,83 @@
+@import "../../style.scss";
+
+.input-container {
+  display: flex;
+  height: 38px;
+  flex-direction: column;
+  align-content: flex-end;
+  padding: 10px;
+}
+
+.input-label {
+  color: $text-secondary-color;
+  font-size: 13px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.input {
+  border: none;
+  padding: 0;
+  border-bottom: 1px solid $main-color;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-color;
+  padding-bottom: 7px;
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+.input-text-error {
+  transform: translateY(-7px);
+  color: $error-color;
+  font-size: 8px;
+  font-weight: 400;
+  display: none;
+}
+
+.input:not(:placeholder-shown)+.input-label,
+.input:focus+.input-label {
+  transform: translateY(-36px);
+  font-size: 9px;
+}
+
+.input-error .input-text-error {
+  display: block;
+}
+
+.input-error .input {
+  color: $error-color;
+}
+
+.input-profile-container {
+  align-items: center;
+  border: 0.063rem solid transparent;
+  border-bottom-color: $input-color;
+  display: flex;
+  justify-content: space-around;
+  min-width: 26rem;
+  padding: 0;
+  padding: 0.625rem 0;
+  position: relative;
+}
+
+.input-profile-label {
+  @include text-style;
+  font-size: 13px;
+  line-height: 13px;
+  min-width: 10.3rem;
+  text-align: start;
+}
+
+.input-profile-input {
+  @include text-style;
+  background: transparent;
+  border: 0;
+  color: $text-secondary-color;
+  font-size: 1rem;
+  outline: transparent;
+  text-align: right;
+  width: 100%;
+}
