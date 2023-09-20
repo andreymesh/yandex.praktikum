@@ -1,4 +1,4 @@
-@import "../../style.scss";
+@import "../../styles/styles";
 
 
 .chat {
@@ -7,6 +7,8 @@
 
 .chat-container {
   @include center;
+
+  align-items: start;
   width: 100%;
 }
 
@@ -28,6 +30,7 @@
 
 .profile-link-title {
   @include text-style;
+
   color: $text-secondary-color;
 
   &::after {
@@ -49,6 +52,7 @@
 
 .search-input {
   @include text-style;
+
   color: $text-secondary-color;
   border-radius: 5px;
   background: $input-color;

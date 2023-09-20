@@ -1,4 +1,4 @@
-@import "../../style.scss";
+@import "../../styles/styles";
 
 .empty-current-chat {
   align-items: center;
@@ -9,5 +9,6 @@
 
 .empty-current-chat-title {
   @include text-style;
+
   color: $text-secondary-color;
 }

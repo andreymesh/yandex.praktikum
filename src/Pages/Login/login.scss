@@ -1,6 +1,7 @@
-@import "../../style.scss";
+@import "../../styles/styles";
 
 .login-container {
   @include center;
+
   height: 100vh;
 }

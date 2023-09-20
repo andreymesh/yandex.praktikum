@@ -1,6 +1,12 @@
-@import "../../style.scss";
+@import "../../styles/styles";
 
 .registration-container {
   @include center;
+
   height: 100vh;
+}
+
+.input-wrapper {
+  flex-direction: column;
+  align-items: start;
 }
