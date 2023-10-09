@@ -1,9 +1,8 @@
-export { AuthForm } from "./AuthForm";
 export { Avatar } from "./Avatar";
 export { Button } from "./Button";
 export { Error } from "./Error";
 export { Header } from "./Header";
-export { Input } from "./Input";
+export { InputField } from "./InputField";
 export { Link } from "./Link";
 export { ButtonIcon } from "./ButtonIcon";
 export { ProfileLayout } from "./ProfileLayout";
@@ -11,3 +10,11 @@ export { EmptyCurrentChat } from "./EmptyCurrentChat";
 export { ChatItem } from "./ChatItem";
 export { ChatList } from "./ChatList";
 export { SelectedCurrentChat } from "./SelectedCurrentChat";
+export { Input } from "./Input";
+export { ErrorLine } from "./ErrorLine";
+export { EditProfileContent } from "./EditProfileContent";
+export { ViewProfileContent } from "./ViewProfileContent";
+export { ChangePasswordContent } from "./ChangePasswordContent";
+export { Message } from "./Message";
+export { Badge } from "./Badge";
+

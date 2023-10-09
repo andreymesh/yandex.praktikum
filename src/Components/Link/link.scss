@@ -1,7 +1,8 @@
-@import "../../style.scss";
+@import "../../styles/styles";
 
 .link {
   @include text-style;
+
   color: $main-color;
   line-height: 11px;
   text-decoration: none;

@@ -1,3 +1,3 @@
 import "./header.scss";
 
-export { default as Header } from "./header.hbs?raw";
+export { Header } from "./header.ts";

@@ -1,7 +1,8 @@
-@import "../../style.scss";
+@import "../../styles/styles";
 
 .profile {
   @include center;
+
   height: 100vh;
 }
 
@@ -19,6 +20,7 @@
 
 .profile-container-user-name {
   @include text-style;
+
   font-weight: 600;
 }
 
@@ -41,6 +43,17 @@
   padding: 1rem;
 }
 
+.photo-overlay {
+  background-color: $overlay-color;
+  border-radius: 50%;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  transition: 0.5s ease;
+  width: 100%;
+}
+
 .photo-container {
   border-radius: 50%;
   overflow: hidden;
@@ -50,20 +63,6 @@
     cursor: pointer;
     opacity: 1;
   }
-}
-
-.photo-overlay {
-  background-color: $overlay-color;
-  border-radius: 50%;
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: 0.5s ease;
-  width: 100%;
 }
 
 .overlay-text {

@@ -1,13 +1,12 @@
-@import "../../style.scss";
+@import "../../styles/styles";
 
 .chat-item-card {
   border-top: 0.063rem solid $input-color;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas:
-    "chat-item-card-photo chat-item-card-name chat-item-card-date"
-    "chat-item-card-photo chat-item-card-last-messege chat-item-card-counter";
+  grid-template:
+    "chat-item-card-photo chat-item-card-name chat-item-card-date" 1fr
+    "chat-item-card-photo chat-item-card-last-messege chat-item-card-counter" 1fr
+    "chat-item-card-empty-row chat-item-card-empty-row chat-item-card-empty-row" 1fr / 1fr 1fr 1fr;
   height: 5rem;
   gap: 1rem 1rem;
   min-width: 16rem;
@@ -59,6 +58,8 @@
   overflow: hidden;
   text-align: left;
   width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .chat-item-card-counter {
