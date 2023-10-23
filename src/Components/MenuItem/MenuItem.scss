@@ -1,0 +1,55 @@
+.menu-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: inherit;
+    }
+
+    .menu-item-icon {
+        margin-right: 5px;
+        width: 22px;
+        height: 22px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding: 1px;
+
+        &.menu-item-icon-media {
+            background-image: url("../../assets/icons/image.svg");
+        }
+
+        &.menu-item-icon-file {
+            background-image: url("../../assets/icons/file.svg");
+        }
+
+        &.menu-item-icon-location {
+            background-image: url("../../assets/icons/location.svg");
+        }
+
+        &.menu-item-icon-plus {
+            background-image: url("../../assets/icons/circle-plus.svg");
+        }
+
+        &.menu-item-icon-delete {
+            background-image: url("../../assets/icons/circle-x.svg");
+        }
+
+        &.menu-item-icon-avatar {
+            background-image: url("../../assets/icons/chat-avatar.svg");
+        }
+    }
+
+    .menu-item-caption {
+        font-size: 12px;
+        font-weight: 500;
+    }
+}

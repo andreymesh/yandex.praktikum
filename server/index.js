@@ -9,3 +9,8 @@ app.use(express.static(path.resolve(process.cwd(), 'dist')));
 app.listen(PORT, () => {
   console.log(`Сервер запущен на ${PORT}`);
 });
+
+app.get('*', (req, res) => {
+  const indexPath = path.join(path.resolve(process.cwd(), 'dist'), 'index.html');
+  res.sendFile(indexPath);
+});

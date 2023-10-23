@@ -1,0 +1,41 @@
+@import "../../styles/styles";
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid $red;
+    border-radius: 20px;
+    width: auto;
+
+
+
+
+    .user-item-icon {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding: 1px;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &.user-item-icon-plus {
+            background-image: url("../../assets/icons/circle-plus.svg");
+        }
+
+        &.user-item-icon-delete {
+            background-image: url("../../assets/icons/circle-x.svg");
+        }
+    }
+
+    .user-item-name {
+        font-size: 14px;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+}

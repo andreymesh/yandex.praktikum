@@ -1,13 +1,14 @@
-import { Block } from "../../core";
+import { BASE_URLS } from "../../config";
+import { Block, IProps } from "../../core";
 
 interface IErrorProps {
   code: string;
   title: string;
 }
 
-export class Error extends Block {
-  constructor(props: IErrorProps) {
-    super(props);
+export class Error extends Block<IErrorProps> {
+  constructor(props: IProps<IErrorProps>) {
+    super({ ...props });
   }
 
   protected render(): string {
@@ -20,7 +21,7 @@ export class Error extends Block {
         <div class="error-page-title">
           <span>${title}</span>
         </div>
-        {{{ Link label="Назад к чатам" page="chat" linkClassName="link"}}}
+        {{{ Link label="Назад к чатам" link="${BASE_URLS.chats}" className="link"}}}
       </main>
     `
   }

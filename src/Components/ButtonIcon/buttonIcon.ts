@@ -1,4 +1,4 @@
-import { Block } from "../../core";
+import { Block, IProps } from "../../core";
 
 interface IButtonIconProps {
   className?: string;
@@ -8,12 +8,14 @@ interface IButtonIconProps {
   onClick?: () => void;
 }
 
-export class ButtonIcon extends Block {
-  constructor(props: IButtonIconProps) {
-    super(props);
-    this.props.events = {
-      click: this.props.onClick ?? (() => { })
-    }
+export class ButtonIcon extends Block<IButtonIconProps> {
+  constructor(props: IProps<IButtonIconProps>) {
+    super({
+      ...props,
+      events: {
+        click: props.onClick ?? (() => { })
+      }
+    });
   }
 
   protected render(): string {

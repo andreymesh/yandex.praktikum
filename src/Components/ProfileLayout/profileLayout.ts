@@ -1,33 +1,49 @@
 import BackIcon from "../../assets/icons/return.svg";
-import DefaultAvatar from "../../assets/icons/default-avatar.svg";
-import { Block } from "../../core";
-import { IProps } from "../../core/Block";
+import { Block, IProps, Router, StoreEvents } from "../../core";
+import { IUser } from "../../types";
 
-interface IProfileLayoutProps extends IProps {
+interface IProfileLayoutProps {
   content?: string;
-  userName?: string;
-  page?: string;
+  user?: IUser | null;
+  backOnClick?: () => void;
+  editAvatar?: boolean;
 }
 
 
-export class ProfileLayout extends Block {
-  constructor(props: IProfileLayoutProps) {
+export class ProfileLayout extends Block<IProfileLayoutProps> {
+  constructor(props: IProps<IProfileLayoutProps>) {
+
+    props.user = window.store.getState().user;
+    props.backOnClick = () => {
+      Router.getRouter().back();
+    }
     super(props);
+    
+    window.store.on(StoreEvents.Updated, () => {
+      this.props.user = window.store.getState().user;
+      this.setProps(this.props);
+    });
   }
 
   protected render(): string {
-    const { content, userName, page } = this.props as IProfileLayoutProps;
+    const { content, user, editAvatar = false } = this.props;
+    if (!user) return '';
+    const { avatar = '', first_name = '', second_name = '' } = user;
     return `
       <main class="profile">
         <nav class="return-button">
-          {{{ ButtonIcon className="return-button-link" icon="${BackIcon}" ${page ? `page="${page}"` : ""} }}}
+          {{{ ButtonIcon className="return-button-link" icon="${BackIcon}" onClick=backOnClick }}}
         </nav>
         <div class="profile-container">
           <div class="profile-container-header">
-          {{{Avatar avatarSrc="${DefaultAvatar}" className="profile-container-avatar"}}}
-            <div><span class="profile-container-user-name">${userName}</span></div>
+            {{{Avatar avatarSrc="${avatar}" className="profile-container-avatar" editAvatar=${editAvatar} }}}
+            <h2 class="profile-container-user-name">${first_name} ${second_name}</h2>
           </div>
-          ${content ?? ""}
+          ${user ?
+              `<div>
+                  ${content}
+              </div>` : ''
+            }
         </div>
       </main>
     `

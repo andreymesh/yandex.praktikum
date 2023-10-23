@@ -3,8 +3,9 @@
 .empty-current-chat {
   align-items: center;
   display: flex;
-  flex-grow: 1;
+  flex: 3;
   justify-content: center;
+  min-height: 18.75rem;
 }
 
 .empty-current-chat-title {

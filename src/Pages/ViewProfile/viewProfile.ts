@@ -6,6 +6,6 @@ export class ViewProfile extends Block {
   }
 
   protected render(): string {
-    return `{{{ ProfileLayout userName="Андрей" content="{{{ ViewProfileContent }}}" page="chat" }}}`
+    return `{{{ ProfileLayout content="{{{ ViewProfileContent }}}" editAvatar=false }}}`
   }
 }

@@ -1,9 +1,42 @@
 import { Block } from "../../core";
+import { updateUserProfile } from "../../services";
+import { IUser } from "../../types";
 import { loginValidation, mailValidation, nameValidation, phoneNumberValidation } from "../../utils";
 
-export class EditProfileContent extends Block {
+interface IEditProfileContentProps {
+  user?: IUser | null;
+  validate?: Record<string, (value: string) => string>;
+}
+
+export class EditProfileContent extends Block<IEditProfileContentProps> {
   constructor() {
-    super({
+    const onSave = async (event: Event) => {
+      event.preventDefault();
+      const email = this.refs.email.value();
+      const first_name = this.refs.first_name.value();
+      const second_name = this.refs.second_name.value();
+      const login = this.refs.login.value();
+      const phone = this.refs.phone.value();
+      const display_name = this.refs.display_name.value();
+
+      const data = {
+        email,
+        login,
+        first_name,
+        second_name,
+        phone,
+        display_name
+      }
+      if (login && first_name && second_name && phone && email) {
+        try {
+            await updateUserProfile(data);
+        } catch (e) {
+            console.error(e)
+        }
+    }
+    }
+    const props = {
+      user: window.store.getState().user,
       validate: {
         login: (value: string) => loginValidation(value)
           ? "Логин должен быть от 3 до 20 символов, написан латиницей, допускаются цифры, дефис и нижнее подчёркивание"
@@ -17,34 +50,28 @@ export class EditProfileContent extends Block {
         phone: (value?: string) => phoneNumberValidation(value)
           ? "Телефон должен быть от 10 до 15 символов, состоять из цифр, может начинается с плюса." : ""
       },
-      onSave: (event: Event) => {
-        event.preventDefault();
-        const email = this.refs.email.value();
-        const first_name = this.refs.first_name.value();
-        const second_name = this.refs.second_name.value();
-        const login = this.refs.login.value();
-        const phone = this.refs.phone.value();
-        const nickName = this.refs.nickName.value();
+      onSave: onSave,
+      events: {
+        submit: (event: Event) => {
+          onSave(event)
+        }
+      },
+    };
 
-        console.log({
-          email,
-          login,
-          first_name,
-          second_name,
-          phone,
-          nickName
-        })
-      }
-    });
+
+    super({ ...props });
   }
 
-  protected render(): string {
+  protected render() {
+    const { user } = this.props;
+    if (!user) return "";
     return `
     <div class="edit-profile">
       <form class="edit-profile-form">
         {{{ InputField
-          label="Почта" name="email"
-          value="pochta@yandex.ru"
+          label="Почта"
+          name="email"
+          value="${user?.email || ""}"
           inputContainerClassName="input-profile-container"
           inputLabelClassName="input-profile-label"
           inputClassName="input-profile-input"
@@ -55,7 +82,7 @@ export class EditProfileContent extends Block {
           InputField
             label="Логин"
             name="login"
-            value="ivanivanov"
+            value="${user?.login || ""}"
             inputContainerClassName="input-profile-container"
             inputLabelClassName="input-profile-label"
             inputClassName="input-profile-input"
@@ -65,7 +92,7 @@ export class EditProfileContent extends Block {
         {{{ InputField
               label="Имя"
               name="first_name"
-              value="Иван"
+              value="${user?.first_name || ""}"
               inputContainerClassName="input-profile-container"
               inputLabelClassName="input-profile-label"
               inputClassName="input-profile-input"
@@ -76,7 +103,7 @@ export class EditProfileContent extends Block {
           InputField
             label="Фамилия"
             name="second_name"
-            value="Иванов"
+            value="${user?.second_name || ""}"
             inputContainerClassName="input-profile-container"
             inputLabelClassName="input-profile-label"
             inputClassName="input-profile-input"
@@ -85,19 +112,19 @@ export class EditProfileContent extends Block {
         }}}
         {{{ InputField
               label="Имя в чате"
-              name="nickName"
-              value="Иван"
+              name="display_name"
+              value="${user?.display_name || ""}"
               inputContainerClassName="input-profile-container"
               inputLabelClassName="input-profile-label"
               inputClassName="input-profile-input"
-              ref="nickName"
+              ref="display_name"
               validate=validate.login
         }}}
         {{{
           InputField
             label="Телефон"
             name="phone"
-            value="+7-(909)-967-30-30"
+            value="${user?.phone || ""}"
             inputContainerClassName="input-profile-container"
             inputLabelClassName="input-profile-label"
             inputClassName="input-profile-input"
@@ -105,7 +132,7 @@ export class EditProfileContent extends Block {
             validate=validate.phone
           }}}
           <div class="edit-profile-buttons-panel">
-            {{{ Button label="Сохранить" type="primary" onClick=onSave}}}
+            {{{ Button label="Сохранить" type="primary" onClick=onSave isSubmit=true }}}
           </div>
       </form>
     </div>

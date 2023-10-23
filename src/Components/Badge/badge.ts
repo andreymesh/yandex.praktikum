@@ -1,13 +1,13 @@
-import { Block } from "../../core";
+import { Block, IProps } from "../../core";
 
 interface IBadgeProps {
   type: 'primary' | 'ready',
   text: string,
 }
 
-export class Badge extends Block {
-  constructor(props: IBadgeProps) {
-    super(props);
+export class Badge extends Block<IBadgeProps> {
+  constructor(props: IProps<IBadgeProps>) {
+    super({ ...props });
   }
 
   protected render(): string {

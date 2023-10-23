@@ -1,27 +1,44 @@
 import { Block } from "../../core";
-import { passwordValidation } from "../../utils";
+import { updateUserPassword } from "../../services";
+import { passwordValidation, showAlert } from "../../utils";
 
 export class ChangePasswordContent extends Block {
   constructor() {
-    super({
+
+    const onSave = async (event: Event) => {
+      event.preventDefault();
+      const oldPassword = this.refs.oldPassword.value();
+      const newPassword = this.refs.newPassword.value();
+      const repeatNewPassword = this.refs.repeatNewPassword.value();
+
+      if (newPassword !== repeatNewPassword) showAlert('Введите кооректно повтор нового пароля!');
+      if (oldPassword && newPassword && newPassword === repeatNewPassword) {
+
+          try {
+              await updateUserPassword({
+                  oldPassword,
+                  newPassword
+              });
+          } catch (e) {
+              console.warn(e)
+          }
+      }
+    };
+
+    const props = {
       validate: {
         password: (value: string) => passwordValidation(value)
           ? "Пароль должен быть от 8 до 40 символов, обязательно хотя бы одна заглавная буква и одна цифра"
           : ""
       },
-      onSave: (event: Event) => {
-        event.preventDefault();
-        const oldPassword = this.refs.oldPassword.value();
-        const newPassword = this.refs.newPassword.value();
-        const repeatNewPassword = this.refs.repeatNewPassword.value();
-
-        console.log({
-          oldPassword,
-          newPassword,
-          repeatNewPassword
-        })
-      }
-    });
+      onSave: onSave,
+      events: {
+        submit: (event: Event) => {
+          onSave(event)
+        }
+      },
+    };
+    super({ ...props });
   }
 
   protected render(): string {
@@ -31,7 +48,6 @@ export class ChangePasswordContent extends Block {
         {{{ InputField
               label="Старый пароль"
               name="oldPassword"
-              value="1234"
               inputContainerClassName="input-profile-container"
               inputLabelClassName="input-profile-label"
               inputClassName="input-profile-input"
@@ -42,7 +58,6 @@ export class ChangePasswordContent extends Block {
         {{{ InputField
               label="Новый пароль"
               name="newPassword"
-              value="5678"
               inputContainerClassName="input-profile-container"
               inputLabelClassName="input-profile-label"
               inputClassName="input-profile-input"
@@ -53,7 +68,6 @@ export class ChangePasswordContent extends Block {
           {{{ InputField
               label="Повторите новый пароль"
               name="repeatNewPassword"
-              value="5678"
               inputContainerClassName="input-profile-container"
               inputLabelClassName="input-profile-label"
               inputClassName="input-profile-input"

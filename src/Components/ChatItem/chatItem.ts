@@ -1,35 +1,49 @@
-import { Block } from "../../core";
-import { IChat } from "../../types";
-import DefaultAvatar from "../../assets/icons/default-avatar.svg";
+import { Block, IProps } from "../../core";
 
 export interface IChatItemProps {
-  chat: IChat;
+  id: number;
+  title: string;
+  avatar: string | null;
+  unread_count: string | null;
+  last_message_content: string | null;
+  last_message_time: string | null;
+  onClick: (id: number) => void;
 }
 
-export class ChatItem extends Block {
-  constructor(props: IChatItemProps) {
-    super(props)
+export class ChatItem extends Block<IChatItemProps> {
+  constructor(props: IProps<IChatItemProps>) {
+    super({
+      ...props,
+      events: {
+        click: (e: Event) => {
+          e.stopPropagation();
+          props.onClick(this.props.id);
+        }
+      }
+    });
   }
 
-  protected render(): string {
-    const { chat } = this.props as IChatItemProps;
+  protected render() {
+    const { avatar, id, last_message_content, last_message_time, title, unread_count } = this.props;
     return `
       <li class="chat-item-card">
         <div class="chat-item-card-photo-wrapper">
-          <img src="${chat.avatar ?? DefaultAvatar}" class="chat-item-card-photo" alt="Фото собеседника.">
+          {{{ Avatar avatarSrc='${avatar || ''}' className="chat-item-card-photo" }}}
         </div>
-        <p class="chat-item-card-name">
-          ${chat.title}
+        <p class="chat-item-card-name" id=${id}>
+          ${title}
         </p>
         <p class="chat-item-card-last-messege">
-          ${chat?.last_message?.content ?? ""}
+          ${last_message_content || ""}
         </p>
         <time class="chat-item-card-date">
-          ${chat?.last_message?.time ?? ""}
+          ${last_message_time || ""}
         </time>
+        ${unread_count ? `
         <p class="chat-item-card-counter">
-          ${chat?.unread_count ?? ""}
-        </p>
+        ${unread_count || ""}
+      </p>
+        `: ""}
       </li>
     `
   }

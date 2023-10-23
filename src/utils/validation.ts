@@ -34,3 +34,7 @@ export const phoneNumberValidation = (value?: string) => {
 export const validateMessage = (value?: string) => {
   return value === '';
 };
+
+export const validateNameChat = (value: string) => {
+  return value?.length === 0;
+}

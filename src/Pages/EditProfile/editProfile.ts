@@ -5,6 +5,6 @@ export class EditProfile extends Block {
     super();
   }
   protected render(): string {
-    return `{{{ ProfileLayout userName="Андрей" content="{{{ EditProfileContent }}}" page="view-profile" }}}`
+    return `{{{ ProfileLayout content="{{{ EditProfileContent }}}" editAvatar=true }}}`
   }
 }

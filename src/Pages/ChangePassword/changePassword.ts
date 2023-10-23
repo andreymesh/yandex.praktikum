@@ -6,6 +6,6 @@ export class ChangePassword extends Block {
   }
 
   protected render(): string {
-    return `{{{ ProfileLayout userName="Андрей" content="{{{ ChangePasswordContent }}}" page="view-profile" }}}`
+    return `{{{ ProfileLayout content="{{{ ChangePasswordContent }}}" }}}`
   }
 }
