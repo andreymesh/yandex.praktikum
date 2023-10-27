@@ -1,20 +1,32 @@
-import { Block } from "../../core";
+import { Block, IProps, Router } from "../../core";
 
 interface ILinkProps {
   label: string;
-  linkClassName?: string;
+  className?: string;
   page?: string;
+  link?: string;
+  onClick: (event: Event) => void;
 }
 
-export class Link extends Block {
-  constructor(props: ILinkProps) {
-    super(props)
+export class Link extends Block<ILinkProps> {
+  constructor(props: IProps<ILinkProps>) {
+    super({
+        ...props,
+        events: {
+            click: (event: Event) => {
+            if (!this.props.onClick) Router.getRouter().go(props?.link || '/');
+            if (this.props.onClick) {
+              this.props.onClick(event);
+            }
+          }
+      }
+    })
   }
 
   protected render(): string {
-    const { label, linkClassName, page } = this.props
+    const { label, className = "", page } = this.props;
     return `
-    <a ${linkClassName ? `class=${linkClassName}` : ""}  ${page ? `page="${page}"` : ""} >
+    <a ${className ? `class=${className}` : ""}  ${page ? `page="${page}"` : ""} >
      ${label}
     </a>
     `

@@ -1,7 +1,7 @@
 @import "../../styles/styles";
 
 .message {
-  border: 1px solid var(--gray-0);
+  border: 1px solid $grey-0;
   border-radius: 15px;
   height: auto;
   width: auto;
@@ -60,5 +60,12 @@
   .message-time {
     display: flex;
     justify-content: flex-end;
+  }
+
+  .message-user {
+    color: $red;
+    font-size: 13px;
+    font-weight: bold;
+    top: 0;
   }
 }

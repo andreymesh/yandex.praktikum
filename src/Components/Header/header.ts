@@ -1,12 +1,12 @@
-import { Block } from "../../core";
+import { Block, IProps } from "../../core";
 
 interface IHeaderProps {
   label: string;
 }
 
-export class Header extends Block {
-  constructor(props: IHeaderProps) {
-    super(props);
+export class Header extends Block<IHeaderProps> {
+  constructor(props: IProps<IHeaderProps>) {
+    super({ ...props });
   }
 
   protected render() {

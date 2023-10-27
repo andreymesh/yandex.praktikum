@@ -2,35 +2,38 @@
 import EventBus from "./EventBus";
 import { nanoid } from 'nanoid';
 import Handlebars from "handlebars";
+import { isDeepEqual } from "../utils";
 
-export interface IProps {
-    events?: Record<string, any>;
-    [key: string]: any;
+interface BaseProps {
+  events?: Record<string, any>;
+  [key: string]: any;
 }
 
-export class Block {
+export type IProps<T = Record<string,any>> = BaseProps & T;
+
+class Block<Props extends Record<string, any> = any> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
         FLOW_CDU: "flow:component-did-update",
         FLOW_RENDER: "flow:render",
         FLOW_CWUM: "flow:component-will-unmount"
-    };
+    } as const;
 
     public id = nanoid();
-    protected props: IProps;
+    protected props: IProps<Props>;
     protected _element: HTMLElement | null = null;
-    protected _meta: { props: IProps; } | null = null;
+    protected _meta: { props: IProps<Props>; } | null = null;
     private _eventBus: () => EventBus;
-    private children: Record<string, Block> = {};
-    protected refs: Record<string, Block> = {};
+    private children: Record<string, Block<Props>> = {};
+    protected refs: Record<string, Block<Props>> = {};
 
-    constructor(propsWithChildren: IProps = {}) {
-        const eventBus = new EventBus();
-        const {props, children} = this._getChildrenAndProps(propsWithChildren);
+  constructor(propsWithChildren = {} as IProps<Props>) {
+      const eventBus = new EventBus();
+      const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
         this._meta = {
-            props
+          props
         };
 
         this.children = children;
@@ -42,9 +45,9 @@ export class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildrenAndProps(childrenAndProps: IProps) {
-        const props: Record<string, unknown> = {};
-        const children: Record<string, Block> = {};
+    _getChildrenAndProps(childrenAndProps: IProps<Props>) {
+      const props: any = {};
+      const children: Record<string, Block<Props>> = {};
 
         Object.entries(childrenAndProps).forEach(([key, value]) => {
             if (value instanceof Block) {
@@ -54,7 +57,7 @@ export class Block {
             }
         });
 
-        return {props, children};
+      return { props, children };
     }
 
     _registerEvents(eventBus: EventBus) {
@@ -86,33 +89,34 @@ export class Block {
         Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
     }
 
-    private _componentDidUpdate(oldProps: IProps, newProps: IProps) {
-        const response = this.componentDidUpdate(oldProps, newProps);
-        if (response) {
-            this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
-        }
+  private _componentDidUpdate(oldProps: IProps<Props>, newProps: IProps<Props>) {
+    const response = this.componentDidUpdate(oldProps, newProps);
+    if (response) {
+      this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
+  }
 
-    protected componentDidUpdate(oldProps: IProps, newProps: IProps) {
-      return JSON.stringify(newProps) !== JSON.stringify(oldProps);
+    protected componentDidUpdate(oldProps: IProps<Props>, newProps: IProps<Props>) {
+      return isDeepEqual(oldProps, newProps);
     }
 
     private _componentWillUnmount() {
         this.componentWillUnmount()
         this._removeEvents();
+  }
+
+  protected componentWillUnmount() {
+    this._removeEvents();
+  }
+
+  setProps = (nextProps: IProps<Props>) => {
+    if (!nextProps) {
+      return;
     }
+    Object.assign(this.props, nextProps);
+  };
 
-    protected componentWillUnmount() {
-        this._removeEvents();
-    }
-
-    setProps = (nextProps: IProps) => {
-        if (!nextProps) {
-            return;
-        }
-        Object.assign(this.props, nextProps);
-
-    };
+    
 
     get element() {
         return this._element;
@@ -181,7 +185,7 @@ export class Block {
     return this.element;
   }
   
-  _makePropsProxy(props: { [index: string | symbol]: unknown }, self: Block) {
+  _makePropsProxy(props: any, self: Block<Props>) {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];
@@ -205,6 +209,22 @@ export class Block {
     const container = document.createElement('div');
     container.appendChild(this._element as HTMLElement);
     return container.innerHTML;
+  }
+
+  public show() {
+    const app = document.getElementById('app');
+    const htmlElement = this.getContent();
+    if (!app?.firstElementChild) {
+      app?.append(document.createElement('div'));
+    }
+    if (htmlElement) {
+      app?.firstElementChild?.replaceWith(htmlElement);
+    }
+  }
+
+  public remove() {
+    this._removeEvents();
+    this._element?.remove();
   }
 }
 

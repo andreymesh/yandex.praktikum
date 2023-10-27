@@ -10,3 +10,9 @@
   border-radius: 12px;
   gap: 16px;
 }
+
+.container-shadow {
+  border-radius: 12px;
+  background: $white-color;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
+}

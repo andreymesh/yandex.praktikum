@@ -3,7 +3,7 @@ import { IProps } from "../../core/Block";
 
 
 
-interface IInpurtProps extends IProps {
+interface IInpurtProps {
   inputClassName?: string;
   placeholder?: string;
   type?: string;
@@ -13,9 +13,9 @@ interface IInpurtProps extends IProps {
   onBlur?: () => void;
 }
 
-export class Input extends Block {
-  constructor(props: IInpurtProps) {
-    super(props);
+export class Input extends Block<IInpurtProps> {
+  constructor(props: IProps<IInpurtProps>) {
+    super({ ...props });
     this.props.events = {
       blur: this.props.onBlur ?? (() => { })
     }

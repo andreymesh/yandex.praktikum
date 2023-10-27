@@ -23,13 +23,8 @@
 
 .chat-item-card-photo {
   border-radius: 50%;
-  height: 100%;
-  left: 50%;
-  object-fit: cover;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
+  height: 3rem;
+  width: 3rem;
 }
 
 .chat-item-card-name {

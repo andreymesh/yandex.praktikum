@@ -1,24 +1,29 @@
-import { Block } from "../../core";
+import { Block, IProps } from "../../core";
 
 interface IButtonProps {
-  type: "primary";
+  type: "primary" | "link" | "close" | "dots" | "paperclip";
   label: string;
-  page: string;
   onClick: () => void;
+  className?: string;
+  isSubmit?: boolean;
 }
 
-export class Button extends Block {
-  constructor(props: IButtonProps) {
-    super(props);
-    this.props.events = {
-      click: this.props.onClick ?? (() => { })
-    }
+export class Button extends Block<IButtonProps> {
+  constructor(props: IProps<IButtonProps>) {
+    super({
+      ...props,
+      events: {
+        click: props.onClick ?? (() => { })
+    }});
   }
 
   protected render() {
-    const { type, label, page } = this.props;
+    const { isSubmit = false, type, label = "", className = "" } = this.props;
     return `
-    <button type="button" class="button button-${type}" ${page ? `page="${page}"` : ""}>
+    <button
+      type="${isSubmit ? "submit" : "button"}" 
+      class="button ${type ? `button-${type}` : ""} ${className}"
+    >
         ${label}
     </button>
     `

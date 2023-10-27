@@ -17,4 +17,16 @@ export { ViewProfileContent } from "./ViewProfileContent";
 export { ChangePasswordContent } from "./ChangePasswordContent";
 export { Message } from "./Message";
 export { Badge } from "./Badge";
-
+export { Alert } from "./Alert";
+export { Loader } from "./Loader";
+export { ModalPrompt } from "./ModalPrompt";
+export { Modal } from "./Modal";
+export { ChatHeader } from "./ChatHeader";
+export { ModalChatUsers } from "./ModalChatUsers";
+export { ModalAvatar } from "./ModalAvatar";
+export { MenuChat } from "./MenuChat";
+export { MenuItem } from "./MenuItem";
+export { UserItem } from "./UserItem";
+export { MenuMessage } from "./MenuMessage";
+export { ModalLoadFile } from "./ModalLoadFile";
+export { CurrentChatFooter } from "./CurrentChatFooter";

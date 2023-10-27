@@ -3,7 +3,7 @@ import { IProps } from "../../core/Block";
 
 
 
-interface IInputFieldProps extends IProps {
+interface IInputFieldProps  {
   inputContainerClassName?: string;
   inputLabelClassName?: string;
   inputClassName?: string;
@@ -15,8 +15,8 @@ interface IInputFieldProps extends IProps {
   value?: unknown;
   validate?: (value: string) => string;
 }
-export class InputField extends Block {
-  constructor(props: IInputFieldProps) {
+export class InputField extends Block<IInputFieldProps> {
+  constructor(props: IProps<IInputFieldProps>) {
     super({
       ...props,
       onBlur: () => this.validate()

@@ -5,25 +5,14 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="./vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + TS</title>
-  <nav>
-    <ul>
-      <li><a page="error-404" href="">404</a></li>
-      <li><a page="error-500" href="">500</a></li>
-      <li><a page="login" href="">Вход</a></li>
-      <li><a page="registration" href="">Регистрация</a></li>
-      <li><a page="view-profile" href="">Профиль пользователя</a></li>
-      <li><a page="edit-profile" href="">Редактировать данные профиля</a></li>
-      <li><a page="change-password" href="">Редактировать пароль</a></li>
-      <li><a page="chat" href="">Чат</a></li>
-    </ul>
-  </nav>
+  <title>Messenger</title>
 </head>
 
 <body>
-  <div id="app">
-  </div>
+  <div id="app"></div>
   <script type="module" src="./src/main.ts"></script>
+  <dialog id="dialog-alert" class="dialog-alert container-shadow "></dialog>
+  <dialog id="dialog" class="dialog container-shadow "></dialog>
 </body>
 
 </html>
