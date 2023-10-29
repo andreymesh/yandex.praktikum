@@ -1,6 +1,7 @@
-import { Block } from "../../core";
-import { updateUserPassword } from "../../services";
-import { passwordValidation, showAlert } from "../../utils";
+import Block from "../../core/Block";
+import { updateUserPassword } from "../../services/userSettings";
+import { showAlert } from "../../utils/showAlert";
+import { passwordValidation } from "../../utils/validation";
 
 export class ChangePasswordContent extends Block {
   constructor() {
@@ -15,10 +16,7 @@ export class ChangePasswordContent extends Block {
       if (oldPassword && newPassword && newPassword === repeatNewPassword) {
 
           try {
-              await updateUserPassword({
-                  oldPassword,
-                  newPassword
-              });
+            await updateUserPassword({ oldPassword, newPassword });
           } catch (e) {
               console.warn(e)
           }

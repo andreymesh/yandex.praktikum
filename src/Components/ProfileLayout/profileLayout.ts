@@ -1,6 +1,8 @@
-import BackIcon from "../../assets/icons/return.svg";
-import { Block, IProps, Router, StoreEvents } from "../../core";
-import { IUser } from "../../types";
+import Block from "../../core/Block";
+import Router from "../../core/Router";
+import { StoreEvents } from "../../core/Store";
+import { IProps } from "../../types/IProps";
+import { IUser } from "../../types/IUser";
 
 interface IProfileLayoutProps {
   content?: string;
@@ -32,7 +34,7 @@ export class ProfileLayout extends Block<IProfileLayoutProps> {
     return `
       <main class="profile">
         <nav class="return-button">
-          {{{ ButtonIcon className="return-button-link" icon="${BackIcon}" onClick=backOnClick }}}
+          {{{ ButtonIcon className="return-button-link" onClick=backOnClick }}}
         </nav>
         <div class="profile-container">
           <div class="profile-container-header">

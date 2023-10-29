@@ -1,8 +1,13 @@
-import { ModalPrompt } from "..";
+import { ModalPrompt } from "../ModalPrompt";
 import { BASE_URLS } from "../../config";
-import { Block, IProps, StoreEvents, modalController } from "../../core";
-import { createChat, setStateCurrentChat, updateChats } from "../../services";
-import { IChat, IUser } from "../../types";
+import { setStateCurrentChat, updateChats } from "../../services/app";
+import { createChat } from "../../services/chat";
+import { IChat } from "../../types/IChat";
+import { IUser } from "../../types/IUser";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
+import { modalController } from "../../core/ModalController";
+import { StoreEvents } from "../../core/Store";
 
 interface IChatListProps {
   chatList: IChat[];

@@ -1,6 +1,7 @@
 import { BASE_URLS } from "../config";
-import { Router, modalController } from "../core";
-import { IResult } from "../types";
+import { modalController } from "../core/ModalController";
+import Router from "../core/Router";
+import { IResult } from "../types/IResult";
 import { showAlert } from "./showAlert";
 import { showModalAlert } from "./showModalAlert";
 

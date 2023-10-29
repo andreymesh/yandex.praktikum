@@ -1,5 +1,6 @@
-import { IAuthData, IUser } from "../types";
-import { HTTPTransport } from "../utils";
+import { IAuthData } from "../types/IAuthData";
+import { IUser } from "../types/IUser";
+import { HTTPTransport } from "../utils/HTTPTransport";
 
 export class AuthApi {
     private httpTransport = new HTTPTransport();

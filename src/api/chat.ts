@@ -1,5 +1,5 @@
-import { IChatUsersData } from "../types";
-import { HTTPTransport } from "../utils";
+import { IChatUsersData } from "../types/IChatUsersData";
+import { HTTPTransport } from "../utils/HTTPTransport";
 
 export class ChatApi {
     private httpTransport = new HTTPTransport();

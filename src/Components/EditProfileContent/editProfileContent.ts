@@ -1,7 +1,7 @@
-import { Block } from "../../core";
-import { updateUserProfile } from "../../services";
-import { IUser } from "../../types";
-import { loginValidation, mailValidation, nameValidation, phoneNumberValidation } from "../../utils";
+import Block from "../../core/Block";
+import { updateUserProfile } from "../../services/userSettings";
+import { IUser } from "../../types/IUser";
+import { loginValidation, mailValidation, nameValidation, phoneNumberValidation } from "../../utils/validation";
 
 interface IEditProfileContentProps {
   user?: IUser | null;

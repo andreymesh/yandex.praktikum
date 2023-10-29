@@ -1,5 +1,7 @@
-import { Block, IProps, modalController } from "../../core";
-import { validateNameChat } from "../../utils";
+import Block from "../../core/Block";
+import { modalController } from "../../core/ModalController";
+import { IProps } from "../../types/IProps";
+import { validateNameChat } from "../../utils/validation";
 
 interface IModalPromptProps {
   caption: string;

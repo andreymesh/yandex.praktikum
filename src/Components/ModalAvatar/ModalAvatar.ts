@@ -1,7 +1,9 @@
 import { BASE_RESOURCES_URL } from "../../config";
-import { Block, modalController } from "../../core";
-import { updateChatAvatar, updateUserAvatar, updateUserProfile } from "../../services";
-import { addActive, deleteActive, loadNewFileFromDrag } from "../../utils";
+import Block from "../../core/Block";
+import { modalController } from "../../core/ModalController";
+import { updateChatAvatar } from "../../services/chat";
+import { updateUserAvatar, updateUserProfile } from "../../services/userSettings";
+import { addActive, deleteActive, loadNewFileFromDrag } from "../../utils/loadFile";
 
 interface IModalAvatarProps  {
   oldAvatar?: string;
@@ -44,10 +46,6 @@ export class ModalAvatar extends Block<IModalAvatarProps> {
           const chat = window.store.getState().currentChat;
           if (chat && this.props.oldAvatar) {
             this.props.newAvatar = '';
-            console.log('Вернуть на место старый аватар')
-            /* updateChatAvatar({...user, avatar: this.props.oldAvatar}).then(() => {
-                 modalController.closeModal();
-             });*/
             modalController.closeModal();
           }
           modalController.closeModal();

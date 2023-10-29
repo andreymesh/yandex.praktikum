@@ -1,8 +1,9 @@
 import { BASE_URLS } from "../../config";
-import { Block, StoreEvents } from "../../core";
-import { signIn } from "../../services";
-import { IUser } from "../../types";
-import { loginValidation, passwordValidation } from "../../utils";
+import Block from "../../core/Block";
+import { StoreEvents } from "../../core/Store";
+import { signIn } from "../../services/auth";
+import { IUser } from "../../types/IUser";
+import { loginValidation, passwordValidation } from "../../utils/validation";
 
 export interface ILoginPageProps {
   onLogin: (event: Event) => void;

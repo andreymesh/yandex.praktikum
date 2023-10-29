@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Block, { IProps } from "./Block"
+import { IProps } from "../types/IProps";
+import Block from "./Block";
 
 class Route {
   private _pathname: string;
   private readonly _blockClass: typeof Block;
   private _block: Block | null = null;
-  private readonly _props: IProps;
+  private readonly _props?: IProps;
   
-  constructor(pathname: string, view: typeof Block, props: Record<string, any>) {
+  constructor(pathname: string, view: typeof Block, props?: Record<string, any>) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
@@ -40,7 +41,7 @@ class Route {
 
   render() {
     if (!this._block) {
-      this._block = new this._blockClass(this._props.context);
+      this._block = new this._blockClass(this._props?.context);
       this.render();
     } else {
       this._block.show();

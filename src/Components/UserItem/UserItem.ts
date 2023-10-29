@@ -1,6 +1,7 @@
-import { Block, IProps } from "../../core";
-import { IUser } from "../../types";
-import { getUserName } from "../../utils";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
+import { IUser } from "../../types/IUser";
+import { getUserName } from "../../utils/getUserName";
 
 interface IUserItemProps {
   user: IUser;

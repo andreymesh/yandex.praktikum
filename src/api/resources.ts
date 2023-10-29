@@ -1,4 +1,4 @@
-import { HTTPTransport } from "../utils";
+import { HTTPTransport } from "../utils/HTTPTransport";
 
 export class ResourcesApi {
     private httpTransport = new HTTPTransport();

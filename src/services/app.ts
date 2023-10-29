@@ -1,7 +1,8 @@
-import { getUser } from ".";
 import { BASE_URLS } from "../config";
-import { Router } from "../core";
-import { IChat, IUser } from "../types";
+import Router from "../core/Router";
+import { IChat } from "../types/IChat";
+import { IUser } from "../types/IUser";
+import { getUser } from "./auth";
 import { getChatToken, getChatUsers, getChats } from "./chat";
 import { openConnectMessages } from "./sendMessage";
 

@@ -1,5 +1,5 @@
-import { Store } from "./core";
-import { IAppState } from "./types";
+import { Store } from "./core/Store";
+import { IAppState } from "./types/IAppState";
 
 declare global {
   interface Window {

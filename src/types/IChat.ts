@@ -1,7 +1,7 @@
 import { IUser } from "./IUser";
 import { ILastMessage } from "./ILastMessage";
 import { IChatMessage } from "./IChatMessage";
-import { SocketIO } from "../api";
+import { SocketIO } from "../api/socket";
 
 export interface IChat {
   id: number;

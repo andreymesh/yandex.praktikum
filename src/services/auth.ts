@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { AuthApi } from "../api";
+import { AuthApi } from "../api/auth";
 import { BASE_URLS } from "../config";
-import { Router } from "../core";
-import { IAuthData, IUser } from "../types";
-import { responseHasError } from "../utils";
+import Router from "../core/Router";
+import { IAuthData } from "../types/IAuthData";
+import { IUser } from "../types/IUser";
+import { responseHasError } from "../utils/responseHasError";
 import { initialStateApp, setStateUser } from "./app";
 
 const authApi = new AuthApi('/auth');

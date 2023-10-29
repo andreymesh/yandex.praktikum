@@ -1,5 +1,5 @@
-import { Block } from "../../core";
-import { IProps } from "../../core/Block";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
 
 
 

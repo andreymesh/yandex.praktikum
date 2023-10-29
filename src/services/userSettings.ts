@@ -1,8 +1,9 @@
-import { setStateUser } from ".";
-import { UserSettingsApi } from "../api";
-import { Router } from "../core";
-import { IPasswords, IUser } from "../types";
-import { responseHasError } from "../utils";
+import { UserSettingsApi } from "../api/userSettings";
+import Router from "../core/Router";
+import { IPasswords } from "../types/IPasswords";
+import { IUser } from "../types/IUser";
+import { responseHasError } from "../utils/responseHasError";
+import { setStateUser } from "./app";
 
 const userApi = new UserSettingsApi('/user');
 

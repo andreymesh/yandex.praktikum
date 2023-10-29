@@ -1,8 +1,13 @@
-import { UserItem } from "..";
-import { Block, IProps, modalController } from "../../core";
-import { addChatUser, deleteChatUsers, searchUsersByLogin, setStateCurrentChat } from "../../services";
-import { IUser } from "../../types";
-import { loginValidation, showModalAlert } from "../../utils";
+import { UserItem } from "../UserItem";
+import Block from "../../core/Block";
+import { modalController } from "../../core/ModalController";
+import { setStateCurrentChat } from "../../services/app";
+import { addChatUser, deleteChatUsers } from "../../services/chat";
+import { searchUsersByLogin } from "../../services/userSettings";
+import { IProps } from "../../types/IProps";
+import { IUser } from "../../types/IUser";
+import { showModalAlert } from "../../utils/showModalAlert";
+import { loginValidation } from "../../utils/validation";
 
 interface IModalChatUsersProps {
   okClick?: (result: string) => void;

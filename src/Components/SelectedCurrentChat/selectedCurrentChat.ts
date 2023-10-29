@@ -1,7 +1,10 @@
-import { Block, IProps, StoreEvents } from "../../core";
-import { IChat, IChatMessage } from "../../types";
-import { Message } from "..";
-import { getUserName } from "../../utils";
+import { Message } from "../Message";
+import { IChatMessage } from "../../types/IChatMessage";
+import { IChat } from "../../types/IChat";
+import { getUserName } from "../../utils/getUserName";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
+import { StoreEvents } from "../../core/Store";
 
 interface ISelectedCurrentChatProps {
   messageList?: IChatMessage[];

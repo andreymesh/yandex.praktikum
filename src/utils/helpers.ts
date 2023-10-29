@@ -40,5 +40,7 @@ export function queryString(data: PlainObject) {
     throw new Error('input must be an object');
   }
 
-  return getParams(data).map(arr => arr.join('=')).join('&');
+  const params = getParams(data);
+
+  return params?.length ? `?${params.map(arr => arr.join('=')).join('&')}` : "";
 }

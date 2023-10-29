@@ -1,5 +1,5 @@
-import { Alert } from "../Components";
-import { alertController } from "../core";
+import { Alert } from "../Components/Alert";
+import { alertController } from "../core/AlertController";
 
 export const showModalAlert = (message: string) => {
   alertController.addModal((new Alert({

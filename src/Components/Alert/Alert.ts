@@ -1,4 +1,6 @@
-import { Block, IProps, alertController } from "../../core";
+import { alertController } from "../../core/AlertController";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
 
 interface IModalProps {
     message: string;

@@ -1,7 +1,8 @@
-import { SocketIO } from "../api";
+import { SocketIO } from "../api/socket";
 import { BASE_SOCKET_CHAT } from "../config";
-import { IChat, IUser } from "../types";
-import { showAlert } from "../utils";
+import { IChat } from "../types/IChat";
+import { IUser } from "../types/IUser";
+import { showAlert } from "../utils/showAlert";
 
 export const openConnectMessages = (chat: IChat, currentUser: IUser) => {
     if (!chat.id) return;

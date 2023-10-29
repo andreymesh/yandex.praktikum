@@ -1,7 +1,8 @@
 import { BASE_URLS } from "../../config";
-import { Block, StoreEvents } from "../../core";
-import { logOut } from "../../services";
-import { IUser } from "../../types";
+import Block from "../../core/Block";
+import { StoreEvents } from "../../core/Store";
+import { logOut } from "../../services/auth";
+import { IUser } from "../../types/IUser";
 
 
 interface IViewProfileContentProps {

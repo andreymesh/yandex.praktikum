@@ -1,10 +1,11 @@
 import { BASE_RESOURCES_URL } from "../../config";
-import { Block, IProps } from "../../core";
-import { IChatMessage } from "../../types";
-import { getShortDate } from "../../utils";
+import Block from "../../core/Block";
+import { IChatMessage } from "../../types/IChatMessage";
+import { IProps } from "../../types/IProps";
+import { getShortDate } from "../../utils/date";
 
 export interface IMessageProps {
-  message: IChatMessage;
+    message: IChatMessage;
     myMessage: boolean;
     userName: string;
 }
