@@ -1,4 +1,4 @@
-import { Block } from "../../core";
+import Block from "../../core/Block";
 
 export class Chat extends Block {
   constructor() {

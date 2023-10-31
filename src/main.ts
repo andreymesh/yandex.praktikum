@@ -1,9 +1,12 @@
 import * as Components from "./Components";
 import * as Pages from "./Pages";
 import { BASE_URLS } from "./config";
-import { Block, Router, Store, registerComponent } from "./core";
-import { initialStateApp } from "./services";
-import { IAppState } from "./types";
+import Block from "./core/Block";
+import Router from "./core/Router";
+import { Store } from "./core/Store";
+import { registerComponent } from "./core/resgiterComponent";
+import { initialStateApp } from "./services/app";
+import { IAppState } from "./types/IAppState";
 
 Object.entries(Components).forEach(([name, component]) => {
   registerComponent(name, component as typeof Block)

@@ -1,5 +1,5 @@
 import { BASE_API_URL } from "../config";
-import { IResult } from "../types";
+import { IResult } from "../types/IResult";
 import { queryString } from "./helpers";
 
 enum METHODS {
@@ -17,38 +17,20 @@ type IOptionsRequest = {
   params?: object;
 }
 
-type HTTPMethod = (url: string, options?: IOptionsRequest) => Promise<IResult>
+type HTTPMethod = <R = IResult>(url: string, options?: IOptionsRequest) => Promise<R>;
 
 export class HTTPTransport {
   private readonly baseUrl: string = '';
+
   constructor(base_url?: string) {
-      this.baseUrl = base_url || BASE_API_URL;
+    this.baseUrl = base_url || BASE_API_URL;
   }
 
-  get: HTTPMethod = (url, options = {}): Promise<IResult> => {
-    return this.request(this.baseUrl + url + queryString(options.params as NonNullable<unknown> || {}) || '', {
-      ...options,
-      method: METHODS.GET
-    }, options.timeout) as Promise<IResult>;
-  };
-
-  put: HTTPMethod = (url, options = {}) => {
-    return this.request(this.baseUrl + url, { ...options, method: METHODS.PUT }, options.timeout) as Promise<IResult>;
-  };
-
-  post: HTTPMethod = (url, options = {}) => {
-    return this.request(this.baseUrl + url, { ...options, method: METHODS.POST }, options.timeout) as Promise<IResult>;
-  };
-
-  delete: HTTPMethod = (url, options = {}) => {
-
-    return this.request(this.baseUrl + url, { ...options, method: METHODS.DELETE }, options.timeout) as Promise<IResult>;
-  };
-
-  request = (url: string, options: IOptionsRequest = { method: METHODS.GET, }, timeout = 5000) => {
+  private request = <TResponse>(url: string, options: IOptionsRequest = { method: METHODS.GET, }, timeout = 5000) => {
+    console.log({ url });
     const { method, data, headers } = options;
 
-    return new Promise((resolve, reject) => {
+    return new Promise<TResponse>((resolve, reject) => {
 
       const xhr = new XMLHttpRequest();
       xhr.open(method || METHODS.GET, url);
@@ -64,9 +46,9 @@ export class HTTPTransport {
       xhr.onload = () => {
         if (xhr.getResponseHeader('content-type')?.includes('application/json')) {
           const resultData = { status: xhr.status, data: JSON.parse(xhr.responseText) };
-          resolve(resultData);
+          resolve(resultData as TResponse);
         }
-        else resolve(xhr);
+        else resolve(xhr as TResponse);
       };
 
       xhr.onabort = reject;
@@ -84,4 +66,23 @@ export class HTTPTransport {
     });
 
   }
+
+  get: HTTPMethod = (url, options = {}) => {
+    return this.request(this.baseUrl + url + queryString(options.params as NonNullable<unknown> || {}) || '', {
+      ...options,
+      method: METHODS.GET
+    }, options.timeout);
+  };
+
+  put: HTTPMethod = (url, options = {}) => {
+    return this.request(this.baseUrl + url, { ...options, method: METHODS.PUT }, options.timeout);
+  };
+
+  post: HTTPMethod = (url, options = {}) => {
+    return this.request(this.baseUrl + url, { ...options, method: METHODS.POST }, options.timeout);
+  };
+
+  delete: HTTPMethod = (url, options = {}) => {
+    return this.request(this.baseUrl + url, { ...options, method: METHODS.DELETE }, options.timeout);
+  };
 }

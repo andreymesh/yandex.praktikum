@@ -1,4 +1,4 @@
-import { Block } from "../../core";
+import Block from "../../core/Block";
 
 export class EditProfile extends Block {
   constructor() {

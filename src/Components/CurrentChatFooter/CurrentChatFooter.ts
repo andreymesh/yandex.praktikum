@@ -1,7 +1,11 @@
-import { Block, IProps } from "../../core";
-import { IChat, IChatMessage, IUser } from "../../types";
-import { showAlert, validateMessage } from "../../utils";
-import { sendMessage } from "../../services";
+import { IChatMessage } from "../../types/IChatMessage";
+import { IUser } from "../../types/IUser";
+import { IChat } from "../../types/IChat";
+import { validateMessage } from "../../utils/validation";
+import { showAlert } from "../../utils/showAlert";
+import { sendMessage } from "../../services/sendMessage";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
 
 
 interface ICurrentChatFooterProps {

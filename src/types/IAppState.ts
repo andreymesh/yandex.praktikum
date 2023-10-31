@@ -1,4 +1,5 @@
-import { IChat, IUser } from ".";
+import { IChat } from "./IChat";
+import { IUser } from "./IUser";
 
 export interface IAppState {
     error?: string | null;

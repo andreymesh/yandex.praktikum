@@ -1,7 +1,8 @@
-import { Block, IProps, modalController } from "../../core";
-import DefaultAvatar from "../../assets/icons/default-avatar.svg";
 import { BASE_RESOURCES_URL } from "../../config";
-import { ModalAvatar } from "..";
+import { ModalAvatar } from "../ModalAvatar";
+import Block from "../../core/Block";
+import { modalController } from "../../core/ModalController";
+import { IProps } from "../../types/IProps";
 
 interface IAvatarProps {
   avatarSrc?: string;
@@ -25,11 +26,13 @@ export class Avatar extends Block<IAvatarProps> {
 
   protected render(): string {
     const { avatarSrc, className, editAvatar = false } = this.props;
-    const imageSrc = avatarSrc && avatarSrc.trim() !== 'null' ? BASE_RESOURCES_URL + avatarSrc : DefaultAvatar;
+    const imageSrc = avatarSrc && avatarSrc.trim() !== 'null' ? BASE_RESOURCES_URL + avatarSrc : "";
+    const imgClass = imageSrc ? "" : "derfault-avatar";
+    const imgClassName = className ? className : "";
     return `
     <div class="avatar-container">
       <div class="photo-container">
-        <img ${imageSrc ? `src=${imageSrc}` : ""} ${className ? `class=${className}` : ""} alt="Фото">
+        <img ${imageSrc ? `src=${imageSrc}` : ""} class="${imgClassName} ${imgClass}" alt="Фото">
         ${editAvatar ? `
               <div class="photo-overlay">
                 <div class="overlay-text">Поменять аватар</div>

@@ -1,5 +1,6 @@
 import { BASE_URLS } from "../../config";
-import { Block, IProps } from "../../core";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
 
 interface IErrorProps {
   code: string;

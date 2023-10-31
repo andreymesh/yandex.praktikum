@@ -1,8 +1,11 @@
 import { BASE_RESOURCES_URL } from "../../config";
-import { Block, IProps, modalController } from "../../core";
-import { uploadResource } from "../../services";
-import { IFile } from "../../types";
-import { addActive, deleteActive, loadNewFileFromDrag, showModalAlert } from "../../utils";
+import Block from "../../core/Block";
+import { modalController } from "../../core/ModalController";
+import { uploadResource } from "../../services/resources";
+import { IFile } from "../../types/IFile";
+import { IProps } from "../../types/IProps";
+import { addActive, deleteActive, loadNewFileFromDrag } from "../../utils/loadFile";
+import { showModalAlert } from "../../utils/showModalAlert";
 
 interface IModalLoadFileProps {
     okClick?: () => void,

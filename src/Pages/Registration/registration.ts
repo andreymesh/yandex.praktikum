@@ -1,7 +1,8 @@
 import { BASE_URLS } from "../../config";
-import { Block, Router } from "../../core";
-import { signUp } from "../../services";
-import { loginValidation, mailValidation, nameValidation, passwordValidation, phoneNumberValidation } from "../../utils";
+import Block from "../../core/Block";
+import Router from "../../core/Router";
+import { signUp } from "../../services/auth";
+import { loginValidation, mailValidation, nameValidation, passwordValidation, phoneNumberValidation } from "../../utils/validation";
 
 export class Registration extends Block {
   constructor() {

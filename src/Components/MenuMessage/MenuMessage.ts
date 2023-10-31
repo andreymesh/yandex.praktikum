@@ -1,6 +1,8 @@
-import { ModalLoadFile } from "..";
-import { Block, IProps, modalController } from "../../core";
-import { IChat } from "../../types";
+import { ModalLoadFile } from "../ModalLoadFile";
+import { modalController } from "../../core/ModalController";
+import { IChat } from "../../types/IChat";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
 
 interface IMenuMessageProps {
     currentChat?: IChat | null,

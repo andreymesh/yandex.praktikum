@@ -1,4 +1,5 @@
-import { Block, IProps } from "../../core";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
 
 export interface IChatItemProps {
   id: number;

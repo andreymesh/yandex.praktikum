@@ -1,6 +1,8 @@
-import { Block, IProps, StoreEvents } from "../../core";
-import { IChat } from "../../types";
-import { declension } from "../../utils";
+import Block from "../../core/Block";
+import { StoreEvents } from "../../core/Store";
+import { IChat } from "../../types/IChat";
+import { IProps } from "../../types/IProps";
+import { declension } from "../../utils/declension";
 
 
 interface IChatHeaderProps {

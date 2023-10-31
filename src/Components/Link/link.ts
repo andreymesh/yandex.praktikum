@@ -1,4 +1,6 @@
-import { Block, IProps, Router } from "../../core";
+import Block from "../../core/Block";
+import Router from "../../core/Router";
+import { IProps } from "../../types/IProps";
 
 interface ILinkProps {
   label: string;

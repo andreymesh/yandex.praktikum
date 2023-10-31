@@ -1,4 +1,5 @@
-import { Block, IProps } from "../../core";
+import Block from "../../core/Block";
+import { IProps } from "../../types/IProps";
 
 interface IErrorLineProps {
     error?: string;

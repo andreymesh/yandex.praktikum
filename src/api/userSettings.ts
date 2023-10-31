@@ -1,5 +1,6 @@
-import { IPasswords, IUser } from "../types";
-import { HTTPTransport } from "../utils";
+import { IPasswords } from "../types/IPasswords";
+import { IUser } from "../types/IUser";
+import { HTTPTransport } from "../utils/HTTPTransport";
 
 export class UserSettingsApi {
     private httpTransport = new HTTPTransport();

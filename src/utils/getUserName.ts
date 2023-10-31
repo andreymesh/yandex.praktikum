@@ -1,4 +1,4 @@
-import { IUser } from "../types";
+import { IUser } from "../types/IUser";
 
 export const getUserName = (user: IUser, fullName?: boolean) => {
   const _fullName = `${user.first_name} ${user.second_name}`;

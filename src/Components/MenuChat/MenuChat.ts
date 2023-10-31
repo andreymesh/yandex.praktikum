@@ -1,6 +1,9 @@
-import { ModalAvatar, ModalChatUsers } from "..";
-import { Block, IProps, modalController } from "../../core";
-import { IChat } from "../../types";
+import Block from "../../core/Block";
+import { ModalChatUsers } from "../ModalChatUsers";
+import { ModalAvatar } from "../ModalAvatar";
+import { modalController } from "../../core/ModalController";
+import { IChat } from "../../types/IChat";
+import { IProps } from "../../types/IProps";
 
 interface IMenuChatProps {
   currentChat?: IChat | null;

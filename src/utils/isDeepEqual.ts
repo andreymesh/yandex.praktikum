@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 export type Indexed<T = unknown> = {
   [key in string]: T;
 };
@@ -7,23 +8,25 @@ export const isObject = (object: object | unknown) => {
 };
 
 export const isDeepEqual = <T extends object>(object1: { [index: string]: T }, object2: { [index: string]: T }) => {
+  if (object1 === object2) {
+    return true;
+  }
+  else if ((typeof object1 == "object" && object1 != null) && (typeof object2 == "object" && object2 != null)) {
+    if (Object.keys(object1).length != Object.keys(object2).length)
+      return false;
 
-  const objKeys1 = Object.keys(object1);
-  const objKeys2 = Object.keys(object2);
-
-  if (objKeys1.length !== objKeys2.length) return false;
-
-  for (const key of objKeys1) {
-      const value1 = object1[key];
-      const value2 = object2[key];
-
-      const isObjects = isObject(value1) && isObject(value2);
-
-      if ((isObjects && !isDeepEqual(value1 as { [index: string]: T }, value2 as { [index: string]: T })) ||
-          (!isObjects && value1 !== value2)
-      ) {
+    for (const prop in object1) {
+      if (object2.hasOwnProperty(prop))
+      {  
+        if (!isDeepEqual(object1[prop] as { [index: string]: T }, object2[prop] as { [index: string]: T }))
           return false;
       }
+      else
+        return false;
+    }
+    
+    return true;
   }
-  return true;
-};
+  else 
+    return false;
+}

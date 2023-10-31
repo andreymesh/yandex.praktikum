@@ -1,7 +1,9 @@
 import { setStateCurrentChat, updateChats } from "./app";
-import { ChatApi } from "../api";
-import { IChat, IChatUsersData, IUser } from "../types";
-import { responseHasError } from "../utils";
+import { ChatApi } from "../api/chat";
+import { IChat } from "../types/IChat";
+import { IChatUsersData } from "../types/IChatUsersData";
+import { IUser } from "../types/IUser";
+import { responseHasError } from "../utils/responseHasError";
 
 const chatApi = new ChatApi('/chats');
 

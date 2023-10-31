@@ -2,14 +2,8 @@
 import EventBus from "./EventBus";
 import { nanoid } from 'nanoid';
 import Handlebars from "handlebars";
-import { isDeepEqual } from "../utils";
-
-interface BaseProps {
-  events?: Record<string, any>;
-  [key: string]: any;
-}
-
-export type IProps<T = Record<string,any>> = BaseProps & T;
+import { isDeepEqual } from "../utils/isDeepEqual";
+import { IProps } from "../types/IProps";
 
 class Block<Props extends Record<string, any> = any> {
     static EVENTS = {
@@ -74,20 +68,21 @@ class Block<Props extends Record<string, any> = any> {
         this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    protected init() {
-    }
+  protected init() {}
+  
 
-    private _componentDidMount() {
-        this.componentDidMount();
-    }
+  private _componentDidMount() {
+    this.componentDidMount();
+  }
+  
 
-    protected componentDidMount() {
-    }
+  protected componentDidMount() {}
+  
 
-    public dispatchComponentDidMount() {
-        this._eventBus().emit(Block.EVENTS.FLOW_CDM);
-        Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
-    }
+  public dispatchComponentDidMount() {
+    this._eventBus().emit(Block.EVENTS.FLOW_CDM);
+    Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
+  }
 
   private _componentDidUpdate(oldProps: IProps<Props>, newProps: IProps<Props>) {
     const response = this.componentDidUpdate(oldProps, newProps);
@@ -96,13 +91,13 @@ class Block<Props extends Record<string, any> = any> {
     }
   }
 
-    protected componentDidUpdate(oldProps: IProps<Props>, newProps: IProps<Props>) {
-      return isDeepEqual(oldProps, newProps);
-    }
+  protected componentDidUpdate(oldProps: IProps<Props>, newProps: IProps<Props>) {
+    return !isDeepEqual(oldProps, newProps);
+  }
 
-    private _componentWillUnmount() {
-        this.componentWillUnmount()
-        this._removeEvents();
+  private _componentWillUnmount() {
+    this.componentWillUnmount()
+    this._removeEvents();
   }
 
   protected componentWillUnmount() {
@@ -113,7 +108,7 @@ class Block<Props extends Record<string, any> = any> {
     if (!nextProps) {
       return;
     }
-    Object.assign(this.props, nextProps);
+    Object.assign(this.props ?? {}, nextProps);
   };
 
     
@@ -182,6 +177,9 @@ class Block<Props extends Record<string, any> = any> {
   }
 
   getContent() {
+    if (!this.element) {
+      this.render();
+    }
     return this.element;
   }
   
@@ -223,7 +221,7 @@ class Block<Props extends Record<string, any> = any> {
   }
 
   public remove() {
-    this._removeEvents();
+    this._componentWillUnmount();
     this._element?.remove();
   }
 }

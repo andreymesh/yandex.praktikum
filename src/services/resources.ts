@@ -1,5 +1,5 @@
-import { ResourcesApi } from "../api";
-import { responseHasError } from "../utils";
+import { ResourcesApi } from "../api/resources";
+import { responseHasError } from "../utils/responseHasError";
 
 const resourcesApi = new ResourcesApi('/resources');
 
